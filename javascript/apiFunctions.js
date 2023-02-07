@@ -35,7 +35,7 @@ function editApiData(e) {
     let body = document.getElementById('body').value;
 
     if (id === null) {
-        console.log('Please choose a card to edit');
+        alert('Please choose a card to edit');
     } else {
 
         fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
@@ -52,7 +52,7 @@ function editApiData(e) {
         })
             .then((response) => response.json())
             .then((json) => {
-                const arrayIndex = findArrayIndex();
+                const arrayIndex = getPostIndex();
 
 
                 listOfdata[arrayIndex] = json;
@@ -91,20 +91,15 @@ function getPostById(globalid) {
 
 //---------------------- find arrayIndex function ----------------------
 
-function findArrayIndex() {
-    let arrayIndex = 0;
-    const findArray = listOfdata.find(findName);
+function getPostIndex() {
+   
     const finadIndexOfArray = listOfdata.findIndex(findIndextest);
-    arrayIndex = finadIndexOfArray;
-    function findName(listOfItems) {
-        return listOfItems.id === id;
-    }
+    
     function findIndextest(value) {
-        return value === findArray;
+        return value.id === id;
     }
 
-    return arrayIndex;
-
+    return finadIndexOfArray;
 
 }
 
@@ -146,14 +141,14 @@ function createCard() {
 
     let title = document.getElementById('title').value;
     let body = document.getElementById('body').value;
-    if (title === "" & body === "") {
+    if (title === "" && body === "") {
 
-        console.log("title & body is empty")
+        alert('please fill the title and the body to add a card')
 
     } else if (title === "") {
-        console.log("title is empty");
+        alert('please fill the title to add a card')
     } else if (body === "") {
-        console.log("body is empty");
+        alert('please fill the body to add a card')
     } else {
 
         fetch('https://jsonplaceholder.typicode.com/posts', {
