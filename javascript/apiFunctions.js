@@ -93,13 +93,8 @@ function getPostById(globalid) {
 
 function getPostIndex() {
    
-    const finadIndexOfArray = listOfdata.findIndex(findIndextest);
-    
-    function findIndextest(value) {
-        return value.id === id;
-    }
-
-    return finadIndexOfArray;
+    return listOfdata.findIndex((value)=> value.id === id);
+     
 
 }
 
@@ -165,9 +160,9 @@ function createCard() {
             .then((response) => response.json())
             .then((json) => {
 
-                listOfdata.push(json)
+                listOfdata.unshift(json);
                 showData();
-                console.log("card added");
+                alert("card added");
             });
     }
 }
